@@ -199,11 +199,13 @@ class Player:
     def jump(self):
         if self.isGrounded:
             self.yvelo = -self.jump_power
-            self.y += self.yvelo
             self.isGrounded = False
 
-    def move(self, direction):
-        self.xvelo = direction * self.speed * 75/FRAMERATE
+    def move(self, direction, decline=False):
+        self.xvelo += direction * self.speed * 15/FRAMERATE
+        self.xvelo = clamp(self.xvelo, -300/FRAMERATE, 300/FRAMERATE)
+        if decline:
+            self.xvelo /= 1 + 15/FRAMERATE
 
 
 # game stuff
@@ -287,7 +289,7 @@ while running:
     elif viewpage == "game":
         # player
         if not debug:
-            player.move(0)
+            player.move(0, True)
             if pygame.key.get_pressed()[RIGHT]:  # move right
                 player.move(1)
             if pygame.key.get_pressed()[LEFT]:  # move left
