@@ -6,6 +6,6 @@ A to move left
 D to move right
 
 Build instructions:
-you need pyinstaller
+you dont
 
-type "py -m PyInstaller main.py constants.py pygameui.py -F --noconsole"
+idk figure it out your self
